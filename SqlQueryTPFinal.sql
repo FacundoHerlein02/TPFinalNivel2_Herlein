@@ -1,0 +1,2 @@
+Select * from ARTICULOS
+Select A.Id,Codigo,Nombre,A.Descripcion ,M.Descripcion Marca,C.Descripcion Categoría,ImagenUrl,Precio from ARTICULOS A,MARCAS M,CATEGORIAS C where A.IdMarca=M.Id And A.IdCategoria=C.Id
