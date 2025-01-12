@@ -25,7 +25,7 @@ namespace pryAdministradorArticulos
         {
             InitializeComponent();
             this.Articulo = articulo;
-            Text = "Modificar Artículo";
+            Text = "Modificar Artículo";            
         }
         public frmAltaArticulo(Articulo art,bool detalle)
         {
@@ -60,7 +60,15 @@ namespace pryAdministradorArticulos
                 Articulo.Marca = (Marca)cboMarca.SelectedItem;
                 Articulo.Categoria = (Categoria)cboCategoria.SelectedItem;
                 Articulo.UrlImagen = txtUrlImagen.Text;
-                Articulo.Precio = float.Parse(txtPrecio.Text);
+                if (!String.IsNullOrEmpty(txtPrecio.Text))
+                {
+                    Articulo.Precio = float.Parse(txtPrecio.Text);
+                }
+                else
+                {
+                    //Pone el precio en 0 si no cargas nada
+                    Articulo.Precio= 0;
+                }
                 //Si el id es 0 esta agregando
                 if(Articulo.Id==0)
                 {

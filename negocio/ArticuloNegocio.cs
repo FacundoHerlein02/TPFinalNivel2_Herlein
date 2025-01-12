@@ -35,9 +35,12 @@ namespace negocio
                     aux.Categoria = new Categoria();
                     aux.Categoria.Descripcion=datos.Lector["Categoría"].ToString();
                     aux.Categoria.Id = (int)datos.Lector["idCategoria"];
-                    
-                    aux.UrlImagen = (string)datos.Lector["ImagenUrl"];
-                    aux.Precio = float.Parse(datos.Lector["Precio"].ToString());
+
+                    //Si no es null lee la imagen
+                    if (!(datos.Lector["ImagenUrl"] is DBNull))
+                        aux.UrlImagen = (string)datos.Lector["ImagenUrl"];
+                    if(!(datos.Lector["Precio"] is DBNull))
+                        aux.Precio = float.Parse(datos.Lector["Precio"].ToString());
                     //Añade a la lista
                     listaArticulos.Add(aux);
                 }
@@ -129,11 +132,14 @@ namespace negocio
 
                         aux.Marca = new Marca();
                         aux.Marca.Descripcion = datos.Lector["Marca"].ToString();
+                        aux.Marca.Id = (int)datos.Lector["idMarca"];
                         aux.Categoria = new Categoria();
                         aux.Categoria.Descripcion = datos.Lector["Categoría"].ToString();
-
-                        aux.UrlImagen = (string)datos.Lector["ImagenUrl"];
-                        aux.Precio = float.Parse(datos.Lector["Precio"].ToString());
+                        aux.Categoria.Id = (int)datos.Lector["idCategoria"];
+                        if(!(datos.Lector["ImagenUrl"] is DBNull))
+                            aux.UrlImagen = (string)datos.Lector["ImagenUrl"];
+                        if (!(datos.Lector["Precio"] is DBNull))
+                            aux.Precio = float.Parse(datos.Lector["Precio"].ToString());
                         //Añade a la lista
                         lista.Add(aux);
                     }
@@ -154,16 +160,18 @@ namespace negocio
         {
             if(campoDB=="Precio")
             {
+                string filtroMondea = filtro.Replace(",", ".");
                 switch(criterio)
                 {
+                    
                     case "Mayor a":
-                        consulta += "Round(" + campoDB + ",2)" + " > " + filtro;
+                        consulta += "Round(" + campoDB + ",2)" + " > " + filtroMondea;
                         break;
                     case "Menor a":
-                        consulta += "Round(" + campoDB + ",2)" + " < " + filtro;
+                        consulta += "Round(" + campoDB + ",2)" + " < " + filtroMondea;
                         break;
                     case "Igual a":
-                        consulta += "Round("+campoDB+",2)" + "=" + filtro;
+                        consulta += "Round("+campoDB+",2)" + "=" + filtroMondea;
                         break;
                 }
             }

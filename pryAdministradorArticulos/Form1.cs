@@ -160,8 +160,7 @@ namespace pryAdministradorArticulos
                 cboCriterio.Items.Clear();
                 cboCriterio.Items.Add("Comienza con");
                 cboCriterio.Items.Add("Termina con");
-                cboCriterio.Items.Add("Contiene");
-                txtFiltroAvanzado.Clear();
+                cboCriterio.Items.Add("Contiene");                
             }
         }
 
@@ -220,11 +219,12 @@ namespace pryAdministradorArticulos
         {
             if(cboCampo.SelectedItem!=null && cboCampo.SelectedItem.ToString()=="Precio")
             {
-                if(!Char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+                if(!Char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back &&e.KeyChar!= ',')
                 {
                     e.Handled = true;
                 }
             }
         }
+        
     }
 }

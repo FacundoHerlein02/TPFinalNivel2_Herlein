@@ -186,7 +186,7 @@
             this.txtFiltroAvanzado.Location = new System.Drawing.Point(616, 334);
             this.txtFiltroAvanzado.Name = "txtFiltroAvanzado";
             this.txtFiltroAvanzado.Size = new System.Drawing.Size(168, 21);
-            this.txtFiltroAvanzado.TabIndex = 3;
+            this.txtFiltroAvanzado.TabIndex = 3;            
             this.txtFiltroAvanzado.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFiltroAvanzado_KeyPress);
             // 
             // cboCriterio
