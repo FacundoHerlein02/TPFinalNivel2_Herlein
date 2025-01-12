@@ -68,28 +68,32 @@
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.btnAceptar.Location = new System.Drawing.Point(324, 348);
+            this.btnAceptar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAceptar.Location = new System.Drawing.Point(316, 347);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(169, 28);
-            this.btnAceptar.TabIndex = 2;
+            this.btnAceptar.Size = new System.Drawing.Size(174, 35);
+            this.btnAceptar.TabIndex = 7;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(92, 348);
+            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.Location = new System.Drawing.Point(84, 347);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(169, 28);
-            this.btnCancelar.TabIndex = 3;
+            this.btnCancelar.Size = new System.Drawing.Size(171, 35);
+            this.btnCancelar.TabIndex = 8;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // pctImagen
             // 
             this.pctImagen.Location = new System.Drawing.Point(316, 39);
             this.pctImagen.Name = "pctImagen";
             this.pctImagen.Size = new System.Drawing.Size(242, 245);
+            this.pctImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pctImagen.TabIndex = 4;
             this.pctImagen.TabStop = false;
             // 
@@ -99,7 +103,7 @@
             this.txtNombre.Location = new System.Drawing.Point(121, 68);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(173, 21);
-            this.txtNombre.TabIndex = 5;
+            this.txtNombre.TabIndex = 1;
             // 
             // txtDescripcion
             // 
@@ -107,7 +111,7 @@
             this.txtDescripcion.Location = new System.Drawing.Point(121, 110);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(173, 21);
-            this.txtDescripcion.TabIndex = 6;
+            this.txtDescripcion.TabIndex = 2;
             // 
             // txtUrlImagen
             // 
@@ -115,7 +119,8 @@
             this.txtUrlImagen.Location = new System.Drawing.Point(121, 243);
             this.txtUrlImagen.Name = "txtUrlImagen";
             this.txtUrlImagen.Size = new System.Drawing.Size(173, 21);
-            this.txtUrlImagen.TabIndex = 7;
+            this.txtUrlImagen.TabIndex = 5;
+            this.txtUrlImagen.Leave += new System.EventHandler(this.txtUrlImagen_Leave);
             // 
             // txtPrecio
             // 
@@ -123,25 +128,29 @@
             this.txtPrecio.Location = new System.Drawing.Point(121, 286);
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(173, 21);
-            this.txtPrecio.TabIndex = 8;
+            this.txtPrecio.TabIndex = 6;
+            this.txtPrecio.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtPrecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecio_KeyPress);
             // 
             // cboMarca
             // 
+            this.cboMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboMarca.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboMarca.FormattingEnabled = true;
             this.cboMarca.Location = new System.Drawing.Point(121, 153);
             this.cboMarca.Name = "cboMarca";
             this.cboMarca.Size = new System.Drawing.Size(173, 23);
-            this.cboMarca.TabIndex = 9;
+            this.cboMarca.TabIndex = 3;
             // 
             // cboCategoria
             // 
+            this.cboCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCategoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCategoria.FormattingEnabled = true;
             this.cboCategoria.Location = new System.Drawing.Point(121, 198);
             this.cboCategoria.Name = "cboCategoria";
             this.cboCategoria.Size = new System.Drawing.Size(173, 23);
-            this.cboCategoria.TabIndex = 10;
+            this.cboCategoria.TabIndex = 4;
             // 
             // lblNombre
             // 
@@ -228,6 +237,7 @@
             this.Name = "frmAltaArticulo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Alta de Artículo";
+            this.Load += new System.EventHandler(this.frmAltaArticulo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pctImagen)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

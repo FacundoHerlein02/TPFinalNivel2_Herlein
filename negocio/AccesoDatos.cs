@@ -46,8 +46,22 @@ namespace negocio
                 throw ex;
             }
         }
+        public void EjecutarAccion()
+        {
+            comando.Connection = conexion;
+            try
+            {
+                conexion.Open();
+                comando.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
         //Añade parametros al comando
-        public void SetearParametros(string nombre,string valor)
+        public void SetearParametros(string nombre,object valor)
         {
             comando.Parameters.AddWithValue(nombre, valor);
         }
