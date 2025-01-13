@@ -160,18 +160,18 @@ namespace negocio
         {
             if(campoDB=="Precio")
             {
-                string filtroMondea = filtro.Replace(",", ".");
+                string filtroMoneda = filtro.Replace(",", ".");                
                 switch(criterio)
                 {
                     
                     case "Mayor a":
-                        consulta += "Round(" + campoDB + ",2)" + " > " + filtroMondea;
+                        consulta += "Round(" + campoDB + ",2)" + " > " + filtroMoneda;
                         break;
                     case "Menor a":
-                        consulta += "Round(" + campoDB + ",2)" + " < " + filtroMondea;
+                        consulta += "Round(" + campoDB + ",2)" + " < " + filtroMoneda;
                         break;
                     case "Igual a":
-                        consulta += "Round("+campoDB+",2)" + "=" + filtroMondea;
+                        consulta += "Round("+campoDB+",2)" + "=" + filtroMoneda;
                         break;
                 }
             }

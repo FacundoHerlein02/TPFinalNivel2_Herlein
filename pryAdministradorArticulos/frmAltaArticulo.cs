@@ -127,7 +127,7 @@ namespace pryAdministradorArticulos
                     cboCategoria.SelectedValue = Articulo.Categoria.Id;
                     txtUrlImagen.Text = Articulo.UrlImagen;
                     CargarImagen(Articulo.UrlImagen);
-                    txtPrecio.Text = Articulo.Precio.ToString();
+                    txtPrecio.Text = Articulo.Precio.ToString("0.00");
                 }
             }
             catch (Exception ex)
