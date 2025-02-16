@@ -24,8 +24,7 @@ namespace pryAdministradorArticulos
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
             CargarGrillas();
-            cboCampo.Items.Add("Categoría");
-            cboCampo.Items.Add("Código");            
+            cboCampo.Items.Add("Categoría");                       
             cboCampo.Items.Add("Marca");
             cboCampo.Items.Add("Nombre");
             cboCampo.Items.Add("Precio");
@@ -67,6 +66,8 @@ namespace pryAdministradorArticulos
             //Hace invisible las columnas
             dgvArticulos.Columns["Id"].Visible = false;
             dgvArticulos.Columns["UrlImagen"].Visible = false;
+            dgvArticulos.Columns["Descripcion"].Visible = false;
+            dgvArticulos.Columns["Codigo"].Visible = false;
             //Define el formato moneda en la celda
             dgvArticulos.Columns["Precio"].DefaultCellStyle.Format = "C2";
             dgvArticulos.Columns["Precio"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;            
@@ -113,19 +114,44 @@ namespace pryAdministradorArticulos
             ArticuloNegocio negocio= new ArticuloNegocio();
             try
             {
-                if(ValidarCampos())
+                if(cboCampo.SelectedItem.ToString()=="Marca" && lblCriterio.Text.Equals("Marcas"))
                 {
-                    string campo = cboCampo.SelectedItem.ToString();
-                    string criterio = cboCriterio.SelectedItem.ToString();
-                    string filtro = txtFiltroAvanzado.Text;
-                    dgvArticulos.DataSource = null;
+                    string campo= cboCampo.SelectedItem.ToString();
+                    string criterio=  "Contiene";
+                    string filtro = cboCriterio.SelectedItem.ToString();
+                    dgvArticulos.DataSource=null;
                     dgvArticulos.DataSource = negocio.filtrar(campo, criterio, filtro);
                     OcultarColumnas();
                 }
-                else
+                else 
                 {
-                    MessageBox.Show("Debe seleccionar un elemento de la lista desplegable","Error en Búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (ValidarCampos())
+                    {
+                        string campo = cboCampo.SelectedItem.ToString();
+                        string criterio = cboCriterio.SelectedItem.ToString();
+                        string filtro = txtFiltroAvanzado.Text;
+                        dgvArticulos.DataSource = null;
+                        dgvArticulos.DataSource = negocio.filtrar(campo, criterio, filtro);
+                        OcultarColumnas();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Debe seleccionar un elemento de la lista desplegable", "Error en Búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
+                //if(ValidarCampos())
+                //{
+                //    string campo = cboCampo.SelectedItem.ToString();
+                //    string criterio = cboCriterio.SelectedItem.ToString();
+                //    string filtro = txtFiltroAvanzado.Text;
+                //    dgvArticulos.DataSource = null;
+                //    dgvArticulos.DataSource = negocio.filtrar(campo, criterio, filtro);
+                //    OcultarColumnas();
+                //}
+                //else
+                //{
+                //    MessageBox.Show("Debe seleccionar un elemento de la lista desplegable","Error en Búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //}
                 
             }
             catch (Exception ex)
@@ -149,18 +175,45 @@ namespace pryAdministradorArticulos
             string selec = cboCampo.SelectedItem.ToString();
             if (selec== "Precio")
             {
+                cboCriterio.DataSource = null;
                 cboCriterio.Items.Clear();
                 cboCriterio.Items.Add("Menor a");
                 cboCriterio.Items.Add("Mayor a");
                 cboCriterio.Items.Add("Igual a");
                 txtFiltroAvanzado.Clear();
+                lblCriterio.Text = "Criterio";
+                lblFiltroAvanzado.Visible = true;
+                txtFiltroAvanzado.Visible = true;
+            }
+            else if(selec== "Marca")
+            {
+                lblCriterio.Text = "Marcas";
+                lblFiltroAvanzado.Visible = false;
+                txtFiltroAvanzado.Visible = false;
+                cboCriterio.Items.Clear();
+                MarcaNegocio negocio= new MarcaNegocio();
+                try
+                {                    
+                    cboCriterio.DataSource=negocio.listar();
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+
+
             }
             else
-            {                
+            {
+                cboCriterio.DataSource = null;
                 cboCriterio.Items.Clear();
                 cboCriterio.Items.Add("Comienza con");
                 cboCriterio.Items.Add("Termina con");
-                cboCriterio.Items.Add("Contiene");                
+                cboCriterio.Items.Add("Contiene");
+                lblCriterio.Text = "Criterio";
+                lblFiltroAvanzado.Visible = true;
+                txtFiltroAvanzado.Visible = true;
             }
         }
 

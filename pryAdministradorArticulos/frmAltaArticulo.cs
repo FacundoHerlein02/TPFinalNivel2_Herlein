@@ -73,14 +73,28 @@ namespace pryAdministradorArticulos
                 if(Articulo.Id==0)
                 {
                     //Agrega el Artiuclo
-                    negocioArticulo.Agregar(Articulo);
-                    MessageBox.Show("Agregado correctamente","Agregar artículo",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    if(ValidacionCampos())
+                    {
+                        negocioArticulo.Agregar(Articulo);
+                        MessageBox.Show("Agregado correctamente", "Agregar artículo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {                        
+                        return;
+                    }
                 }
                 else
                 {
                     //Modifica el Articulo
-                    negocioArticulo.modificar(Articulo);
-                    MessageBox.Show("Modificado correctamente", "Modificar artículo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if(ValidacionCampos())
+                    {
+                        negocioArticulo.modificar(Articulo);
+                        MessageBox.Show("Modificado correctamente", "Modificar artículo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        return;
+                    }                    
                 }
                 this.Close();
             }
@@ -90,6 +104,71 @@ namespace pryAdministradorArticulos
                 throw ex;
             }
             
+        }
+        private bool ValidacionCampos()
+        {
+            bool res=true;
+            if (txtCodigo.Text == "")
+            {
+                //txtCodigo.Text = "Complete este campo";
+                txtCodigo.BackColor = Color.Red;
+                res = false;
+            }
+            else
+            {
+                txtCodigo.BackColor = Color.Green;
+            }
+            if(txtNombre.Text=="")
+            {
+                //txtNombre.Text = "Complete este campo";
+                txtNombre.BackColor = Color.Red;
+                res = false;
+            }
+            else
+            {
+                txtNombre.BackColor = Color.Green;
+            }
+            if (txtDescripcion.Text == "")
+            {
+                //txtDescripcion.Text = "Complete este campo";
+                txtDescripcion.BackColor = Color.Red;
+                res = false;
+            }
+            else
+            {
+                txtDescripcion.BackColor= Color.Green;
+            }
+            if (txtUrlImagen.Text == "")
+            {
+                //txtUrlImagen.Text = "Complete este campo";
+                txtUrlImagen.BackColor = Color.Red;
+                res = false;
+            }
+            else
+            {
+                txtUrlImagen.BackColor= Color.Green;
+            }
+            if (txtDescripcion.Text == "")
+            {
+                //txtDescripcion.Text = "Complete este campo";
+                txtDescripcion.BackColor= Color.Red;
+                res = false;
+            }
+            else
+            {
+                txtDescripcion.BackColor=Color.Green;
+            }
+            if (txtPrecio.Text == "")
+            {
+                //txtDescripcion.Text = "Complete este campo";
+                txtPrecio.BackColor = Color.Red;
+                res = false;
+            }
+            else
+            {
+                txtPrecio.BackColor = Color.Green;
+            }
+            return res;
         }
         private void CargarImagen(string url)
         {

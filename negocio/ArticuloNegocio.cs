@@ -101,11 +101,7 @@ namespace negocio
                         case "Categoría":
                             CampoDB = "C.Descripcion";
                             consulta = ValidarTexto(CampoDB, consulta, criterio, filtro);
-                            break;
-                        case "Código":
-                            CampoDB = "Codigo";
-                            consulta = ValidarTexto(CampoDB, consulta, criterio, filtro);
-                            break;
+                            break;                        
                         case "Marca":
                             CampoDB = "M.Descripcion";
                             consulta = ValidarTexto(CampoDB, consulta, criterio, filtro);
